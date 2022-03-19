@@ -8,7 +8,7 @@ let app = express();
 //Middleware in use
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// api.use("/api", api);
+app.use("/api", api);
 
 // Direct traffic to homepage
 app.get("/", (req, res) =>
