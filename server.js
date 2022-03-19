@@ -1,7 +1,7 @@
 let express = require("express");
 let api = require("./routes/index");
 
-let PORT = process.nextTick.PORT || 3001;
+let PORT = process.env.PORT || 3001;
 
 let app = express();
 
