@@ -1,14 +1,13 @@
-let express = require("express");
+// Module requirements
+let router = require("express").Router();
+let path = require("path");
 
-let index = require("./index");
-let notes = require("./notes");
+router.get("/notes", (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/notes.html"));
+});
 
-let app = express();
+router.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/index.html"));
+});
 
-app.get("/notes", (req, res) =>
-  res.sendFile(path.join(_dirname, "public/notes.html"))
-);
-
-app.get("/", (req, res) =>
-  res.sendFile(path.join(_dirname, "public/index.html"))
-);
+module.exports = router;
