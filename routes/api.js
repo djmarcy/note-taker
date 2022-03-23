@@ -2,7 +2,6 @@
 const { json } = require("express/lib/response");
 let fs = require("fs");
 let router = require("express").Router();
-let path = require("path");
 let id = require("uniqid");
 
 // 1. GET current notes (retrieve JSON file, parse it, display on page)
@@ -55,15 +54,31 @@ router.post("/notes", (req, res) => {
   res.end();
 });
 
-router.delete("/notes/:id", (res, req) => {
+router.delete("/notes/:id", (req, res) => {
 
-  let oldData = require('../db/db.json');
+  let toDelete = req.params.id
+    
+  fs.readFile("./db/db.json", (err, data) => {
 
-  let toDelete = oldData
+    if (err) throw err
 
-  console.log(toDelete)
+    let oldData = JSON.parse(data)
 
-})
+    for (i = 0; i < oldData.length; i++) {
+
+      if (oldData[i].id == toDelete) {
+
+        console.log(oldData);
+      
+        oldData.slice(i, 1)
+        
+        console.log(oldData)
+      }
+    }
+      
+  })
+
+  })
 
 
 // 3. Assign unique ID to each note in JSON file so you can delete specific notes
