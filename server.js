@@ -1,8 +1,6 @@
 let express = require("express");
 let index = require("./routes/index");
 let notesAPI = require("./routes/api");
-let path = require("path");
-let fs = require("fs");
 
 let PORT = process.env.PORT || 3001;
 
@@ -20,5 +18,3 @@ app.use("/api", notesAPI);
 app.listen(PORT, () =>
   console.log(`Listening at port http://localhost:${PORT}`)
 );
-
-// Next steps
